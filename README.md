@@ -5,34 +5,36 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | null: false |
+| email              | string | unique:true |
 | password           | string | null: false |
 | encrypted_password | string | null: false |
 | kanji_first_name   | string | null: false |
 | kanji_last_name    | string | null: false |
 | kana_first_name    | string | null: false |
-| kanji_first_name   | string | null: false |
-| kana_ last_name    | string | null: false |
+| kana_last_name     | string | null: false |
+| birth_year         | string | null: false |
+| birth_month        | string | null: false |
+| birth_day          | string | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :orders
 
-## items テーブル
+## items テーブル  
 
- Column                 | Type   | Options     |
-| ------------------    | ------ | ----------- |
-| item_image            | text   | null: false |
-| item_name             | string | null: false |
-| item_description      | string | null: false |
-| item_condition        | string | null: false |
-| item_shipping_charge  | string | null: false |
-| item_shipping_address | string | null: false |
-| kana_first_name       | string | null: false |
-| item_days_to_ship     | string | null: false |
-| item_sales_profit     | string | null: false |
-
+ Column                    | Type       | Options                        |
+| ------------------------ | ---------- | ------------------------------ |
+| name                     | string     | null: false                    |
+| price                    | integer    | null: false                    |
+| item_description         | string     | null: false                    |
+| item_condition_id        | integer    | null: false                    |
+| item_shipping_charge_id  | integer    | null: false                    |
+| prefectures_id           | integer    | null: false                    |
+| item_days_to_ship_id     | integer    | null: false                    |
+| item_sales_commission    | string     | null: false                    |
+| item_sales_profit        | string     | null: false                    |
+| user                     | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -43,31 +45,29 @@
 
 | Column     | Type       | Options                        |
 | ---------  | ---------- | ------------------------------ |
-| buyer      | string     | null: false                    |
-| payment    | integer    | null: false                    |
-| items_id   | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping
+- has_one : shipping
 
 
 ## shippings テーブル
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
-| delivery address       | string     | null: false                    |
-| post code              | string     | null: false                    |
-| prefectures            | string     | null: false                    |
+| delivery_address       | string     | null: false                    |
+| post_code              | string     | null: false                    |
+| prefectures            | references | null: false, foreign_key: true |
 | municipality           | string     | null: false                    |
 | order_shipping_address | string     | null: false                    |
-| building name          | string     |                                |
-| phone number           | string     | null: false                    |
-| items_id               | references | null: false, foreign_key: true |
-| orders_id              | references | null: false, foreign_key: true |
+| building_name          | string     |                                |
+| phone_number           | string     | null: false                    |
+| order                  | references | null: false, foreign_key: true |
 
 ### Association
 
