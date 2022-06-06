@@ -24,7 +24,7 @@
 | ------------------------ | ---------- | ------------------------------ |
 | name                     | string     | null: false                    |
 | price                    | integer    | null: false                    |
-| description        　　　 | string     | null: false                    |
+| description        　　　 | text       | null: false                    |
 | category_id        　　　 | integer    | null: false                    |
 | condition_id       　　　 | integer    | null: false                    |
 | shipping_charge_id  　　　| integer    | null: false                    |
@@ -56,7 +56,6 @@
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
-| delivery_address       | string     | null: false                    |
 | post_code              | string     | null: false                    |
 | prefecture_id          | integer    | null: false                    |
 | municipality           | string     | null: false                    |
