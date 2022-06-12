@@ -13,7 +13,16 @@ RSpec.describe User, type: :model do
       user.email = ''  # emailの値を空にする
       user.valid?
       expect(user.errors.full_messages).to include("Email can't be blank")
-    end    
+    end   
+
+    it '既に登録され得ているemailを重複して登録できない' do
+      @user.save
+      @user2.=FactoryBot.build(:user)
+      @user2.email=@user.email
+      @user2.valid?
+      expect(@user2.errors.full_messages).to include("Email has already been taken")
+    end
+
     it 'お名前(全角)の名前が空では登録できない' do
       user = FactoryBot.build(:user)  # Userのインスタンス生成
       user.kanji_first_name = ''  # kanji_first_name の値を空にする
