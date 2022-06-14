@@ -8,5 +8,6 @@ class Item < ApplicationRecord
   validates :shipping_charge_id,      presence: true
   validates :prefecture_id,           presence: true
   validates :days_to_ship_id,         presence: true
+  validates :image_tag,               presence: true
  
 end
