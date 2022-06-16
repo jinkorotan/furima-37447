@@ -1,4 +1,4 @@
-class Prefecture_id_charge < ActiveHash::Base
+class Prefecture_id < ActiveHash::Base
 
   self.data = [
     { id: 1, name: '---' }, { id: 2, name: '北海道' }, { id: 3, name: '青森県' },
