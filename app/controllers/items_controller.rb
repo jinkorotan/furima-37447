@@ -10,4 +10,15 @@ class ItemsController < ApplicationController
      #@itemは空の状態。
      #新規作成ボタンをクリックしたらnewアクションが働く
   end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:image).merge(user_id: current_user.id)
+  end
+
+
+
+
+
 end

@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category_id,condition_id,shipping_charge_id,
+  has_one_attached :image
 
   validates :name,                    presence: true
   validates :price,                   presence: true
@@ -10,7 +11,7 @@ class Item < ApplicationRecord
   validates :shipping_charge_id,      presence: true
   validates :prefecture_id,           presence: true
   validates :days_to_ship_id,         presence: true
-  validates :image_tag,               presence: true
+  validates :image                    presence: true
  
 #空の投稿を保存できないようにする
 validates :title, :text, presence: true
