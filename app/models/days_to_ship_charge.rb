@@ -1,4 +1,4 @@
-class Days_to_ship_id_charge < ActiveHash::Base
+class DaysToShipCharge < ActiveHash::Base
 
   self.data = [
     { id: 1, date: '---' },

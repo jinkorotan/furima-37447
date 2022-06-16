@@ -11,10 +11,9 @@ class ItemsController < ApplicationController
      #新規作成ボタンをクリックしたらnewアクションが働く
   end
 
-  private
+  # private
+#   def item_params
+#     params.require(:item).permit(:image).merge(user_id: current_user.id)
+#   end
 
-  def item_params
-    params.require(:item).permit(:image).merge(user_id: current_user.id)
-  end
-
-end
+ end
