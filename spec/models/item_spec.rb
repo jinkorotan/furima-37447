@@ -77,6 +77,15 @@ RSpec.describe Item, type: :model do
         @item.price = '１１１１１'
         @item.valid?
       end
+
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item..user = nil
+        @item.valid?
+        expect(@item.errors.full_message).to include("User must exist")  
+      end
+
+
+
     end
   end
 end
