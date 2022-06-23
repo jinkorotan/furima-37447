@@ -76,6 +76,7 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数値以外では保存できない' do
         @item.price = '１１１１１'
         @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
       end
 
       it 'ユーザーが紐付いていなければ投稿できない' do
