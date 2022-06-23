@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :days_to_ship_charge
-
+ 
   has_one_attached :image
 
   with_options presence: true do
@@ -14,6 +14,8 @@ class Item < ApplicationRecord
     validates :description
     validates :image
   end
+
+
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
