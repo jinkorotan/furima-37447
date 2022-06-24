@@ -6,16 +6,14 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context 'ユーザー新規登録ができる時' do
-      #全ての項目が入力されていれば登録できる
+      # 全ての項目が入力されていれば登録できる
 
       it 'nicknameとemail、passwordとpassword_confirmationと姓(全角)と名(全角)と姓(カナ)と名(カナ)と生年月日が存在すれば登録できる' do
         expect(@user).to be_valid
       end
-
     end
 
     context 'ユーザー新規登録ができない時' do
-
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
@@ -122,7 +120,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Kana first name can't be blank")
       end
 
-      it '名（c）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+      it '名（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
         @user.kana_first_name = '1一A@'
         @user.valid?
         expect(@user.errors.full_messages).to include('Kana first name is invalid. Input full-width katakana characters.')
