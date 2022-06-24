@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   # ログインしていないユーザーをログインページの画面に促す
   def index
-    @item =Item.all
-   #.allで上から順に取ってくるということになる
+    @item = Item.all
+    # .allで上から順に取ってくるということになる
   end
 
   def new
@@ -26,7 +26,9 @@ class ItemsController < ApplicationController
   end
 
   private
-      def item_params  
-        params.require(:item).permit(:name, :price, :description, :category_id , :condition_id, :shipping_charge_id , :prefecture_id ,:days_to_ship_id , :image ).merge(user_id: current_user.id)
-      end
+
+  def item_params
+    params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
+                                 :prefecture_id, :days_to_ship_id, :image).merge(user_id: current_user.id)
+  end
 end
