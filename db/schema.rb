@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2022_06_16_004409) do
     t.string "shipping_charge_id", null: false
     t.string "prefecture_id", null: false
     t.string "days_to_ship_id", null: false
-    t.text "image"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end

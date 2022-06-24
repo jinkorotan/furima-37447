@@ -9,8 +9,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string     :shipping_charge_id , null: false
       t.string     :prefecture_id      , null: false
       t.string     :days_to_ship_id    , null: false
-      t.text       :image
-      t.references :user               ,null: false
+      t.references :user               , null: false
      end
   end
 end
