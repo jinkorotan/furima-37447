@@ -8,7 +8,7 @@ RSpec.describe Item, type: :model do
   describe '出品の保存' do
     context '出品が保存できる場合' do
       # 全ての項目が入力されていれば登録できる
-      it 'category_idとcondition_idとshipping_charge_idとprefecture_idとdays_to_ship_idとnameとpriceとdescriptionとimageとuが存在すれば登録できる' do
+      it 'category_idとcondition_idとshipping_charge_idとprefecture_idとdays_to_ship_idとnameとpriceとdescriptionとimageとuserが存在すれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -46,19 +46,19 @@ RSpec.describe Item, type: :model do
       it 'priceが空（nil）では投稿できない' do
         @item.price = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid')
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが1円未満では投稿できない' do
         @item.price = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it 'priceが10,000,000円を超過すると投稿できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
 
       it 'descriptionが空では投稿できない' do
@@ -76,13 +76,13 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数値以外では保存できない' do
         @item.price = '１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
       it 'ユーザーが紐付いていなければ投稿できない' do
-        @item..user = nil
+        @item.user = nil
         @item.valid?
-        expect(@item.errors.full_message).to include("User must exist")  
+        expect(@item.errors.full_messages).to include("User must exist")  
       end
 
 
