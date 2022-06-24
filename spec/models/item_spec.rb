@@ -25,6 +25,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
+      it 'shipping_charge_idを選択していないと出品できない' do
+        @item.shipping_charge_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
+      end
+
       it 'prefecture_idを選択していないと出品できない' do
         @item.prefecture_id = '1'
         @item.valid?
@@ -81,6 +87,7 @@ RSpec.describe Item, type: :model do
 
       it 'ユーザーが紐付いていなければ投稿できない' do
         @item.user = nil
+
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")  
       end
