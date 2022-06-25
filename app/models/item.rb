@@ -16,8 +16,6 @@ class Item < ApplicationRecord
     validates :image
   end
 
-
-
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
