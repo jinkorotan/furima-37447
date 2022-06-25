@@ -10,6 +10,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string     :prefecture_id      , null: false
       t.string     :days_to_ship_id    , null: false
       t.references :user               , null: false
+      t.timestamps
      end
   end
 end

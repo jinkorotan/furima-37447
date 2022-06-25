@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   # ログインしていないユーザーをログインページの画面に促す
   def index
-    @item = Item.all
-    # .allで上から順に取ってくるということになる
+    @item = Item.order('created_at DESC')
   end
 
   def new

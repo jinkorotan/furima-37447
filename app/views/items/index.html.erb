@@ -131,11 +131,11 @@
 
    
     <ul class='item-lists'>
- 
-    
-      <li class='list'>
+      
 
         <% @item.each do |item| %>
+
+        <li class='list'>
         <%# ①商品画像 %>
         <%= link_to items_path do %>
               <div class='item-img-content'>
@@ -164,8 +164,9 @@
                 </div>
               </div>
             <% end %>
+              </li>
         <% end %>
-      </li>
+    
 
       
       <% if @item.length == 0 %>
