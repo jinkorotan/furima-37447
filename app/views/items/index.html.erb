@@ -137,7 +137,7 @@
 
         <li class='list'>
         <%# ①商品画像 %>
-        <%# <%= link_to items_path do %> %>
+        <%# <%= link_to items_path do %> 
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>
         <%# ②「sold out」表示 %>
@@ -156,14 +156,15 @@
         <%# ④商品の値段 %> <%# ⑤商品の配送料負担 %>
 
                 <div class='item-price'>
-                  <span><%= item.price %>円<br><%= item.shipping_charge_id %></span>
+                  <span><%= item.price %>円<br><%= item.shipping_charge.name %></span>
+                  <% #itemとアソシエーション関係にあるshipping_chargeモデルのnameカラムを取ってくる %>
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
                   </div>
                 </div>
               </div>
-            <% end %>
+            <%# <% end %>
               </li>
         <% end %>
     
