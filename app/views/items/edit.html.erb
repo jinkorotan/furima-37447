@@ -43,9 +43,9 @@ app/assets/stylesheets/items/new.css %>
     </div>
     <%# /商品名と商品説明 %>
 
-    <%# 商品の詳細 %>
-    <div class="items-detail">
-      <div class="weight-bold-text">商品の詳細</div>
+  <%# 商品の詳細----------------------------------------------------------------------- %>
+  <div class="items-detail">
+    <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
         <div class="weight-bold-text">
           カテゴリー
@@ -58,11 +58,13 @@ app/assets/stylesheets/items/new.css %>
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-      </div>  <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
-    </div>
-    <%# /商品の詳細 %>
+      </div>  
+      <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+    </div> 
+  </div>
+  <%# /商品の詳細 -----------------------------------------------------------------------%>
 
-    <%# 配送について %>
+<%# 配送について -----------------------------------------------------------------------%>
     <div class="items-detail">
       <div class="weight-bold-text question-text">
         <span>配送について</span>
@@ -71,32 +73,32 @@ app/assets/stylesheets/items/new.css %>
 
 
       <div class="form">
-        <div class="weight-bold-text">
-          配送料の負担
-          <span class="indispensable">必須</span>
+            <div class="weight-bold-text">
+              配送料の負担
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.collection_select(:shipping_charge_id, ShippingCharge.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+            <%# <div class="weight-bold-text"> %>
+              発送元の地域
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+            <%# <div class="weight-bold-text"> %>
+              発送までの日数
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.collection_select(:days_to_ship_charge_id, DaysToShipCharge.all, :id, :date, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+          </div>
         </div>
-        <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-        <%# <div class="weight-bold-text"> %>
-          発送元の地域
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
-        <%# <div class="weight-bold-text"> %>
-          発送までの日数
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:days_to_ship_charge_id, DaysToShipCharge.all, :id, :date, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
-      </div>
-    </div>
-    <%# /配送について %>
+<%# /配送について -----------------------------------------------------------------------%>
 
-    <%# 販売価格 %>
-    <div class="sell-price">
-      <div class="weight-bold-text question-text">
-        <span>販売価格<br>(¥300〜9,999,999)</span>
-        <a class="question" href="#">?</a>
+        <%# 販売価格 %>
+        <div class="sell-price">
+          <div class="weight-bold-text question-text">
+            <span>販売価格<br>(¥300〜9,999,999)</span>
+            <a class="question" href="#">?</a>
       </div>
-
+      
       <div>
         <div class="price-content">
           <div class="price-text">
@@ -106,19 +108,21 @@ app/assets/stylesheets/items/new.css %>
           <span class="sell-yen">¥</span>
           <<%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div> 
-        
+
         <div class="price-content">
           <span>販売手数料 (10%)</span>
           <span>
             <span id='add-tax-price'></span>円
           </span>
         </div>
+
         <div class="price-content">
           <span>販売利益</span>
           <span>
             <span id='profit'></span>円
           </span>
         </div>
+
       </div>
     </div>
     <%# /販売価格 %>
