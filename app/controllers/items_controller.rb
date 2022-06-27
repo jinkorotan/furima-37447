@@ -31,17 +31,19 @@ class ItemsController < ApplicationController
 
   def edit
   @item = Item.find(params[:id])
+  #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
   end
 
-  # def update
-  #   @item = Item.find(params[:id])
-  #     if  @item.update(item_params)
-  #       redirect_to item_path(@item)
-  #     else
-  #       render :edit
-  #         #更新が失敗した場合はrenderメソッドでedit.html.erbのページを表示
-  #     end
-  #   end 
+  def update
+    @item = Item.find(params[:id])
+    #editと一組で編集を行う
+      if  @item.update(item_params)
+        redirect_to item_path(@item)
+      else
+        render :edit
+          #更新が失敗した場合はrenderメソッドでedit.html.erbのページを表示
+      end
+  end 
 
   # def destroy
   #     item =Item.find(params[:id])
