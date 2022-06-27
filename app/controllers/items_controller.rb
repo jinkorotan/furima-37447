@@ -1,6 +1,13 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # ログインしていないユーザーをログインページの画面に促す
+
+  before_action :contributor_confirmation, only: [:edit]
+  #ログインしていない状態で新規投稿画面へ直接アクセスしようとしても
+  #before_actionによりcontributor_confirmationメソッドが先に実行され
+  #トップページにリダイレクトする
+
+
   def index
     @item = Item.order('created_at DESC')
   end
@@ -37,8 +44,12 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     #editと一組で編集を行う
+    if @item.update(item_params)
+      render :edit
+    else
     @item.update(item_params)
-    render :show
+      render :show
+    end 
   end 
 
   # def destroy
