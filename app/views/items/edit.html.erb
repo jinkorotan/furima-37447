@@ -8,7 +8,7 @@ app/assets/stylesheets/items/new.css %>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 <%= form_with(model:@item, local: true) do |f| %>
-binding.pry
+
 
      <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%# <%= render 'shared/error_messages', model: f.object %> 
@@ -47,8 +47,8 @@ binding.pry
   <%# 商品の詳細----------------------------------------------------------------------- %>
   <div class="items-detail">
     <div class="weight-bold-text">商品の詳細</div>
-      <div class="form">
-        <div class="weight-bold-text">
+    <div class="form">
+      <div class="weight-bold-text">
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
@@ -59,7 +59,6 @@ binding.pry
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-      </div>  
       <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
     </div> 
   </div>
@@ -79,12 +78,12 @@ binding.pry
               <span class="indispensable">必須</span>
             </div>
             <%= f.collection_select(:shipping_charge_id, ShippingCharge.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-            <%# <div class="weight-bold-text"> %>
+            <div class="weight-bold-text"> 
               発送元の地域
               <span class="indispensable">必須</span>
             </div>
             <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
-            <%# <div class="weight-bold-text"> %>
+            <div class="weight-bold-text"> 
               発送までの日数
               <span class="indispensable">必須</span>
             </div>
@@ -93,7 +92,7 @@ binding.pry
         </div>
 <%# /配送について -----------------------------------------------------------------------%>
 
-        <%# 販売価格 %>
+        <%# 販売価格 〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜%>
         <div class="sell-price">
           <div class="weight-bold-text question-text">
             <span>販売価格<br>(¥300〜9,999,999)</span>
@@ -107,7 +106,7 @@ binding.pry
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <<%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div> 
 
         <div class="price-content">
@@ -126,7 +125,7 @@ binding.pry
 
       </div>
     </div>
-    <%# /販売価格 %>
+    <%# /販売価格 〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜%>
 
     <%# 注意書き %>
     <div class="caution">
