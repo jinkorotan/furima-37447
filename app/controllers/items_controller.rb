@@ -1,11 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  # ログインしていないユーザーをログインページの画面に促す
-
-  before_action :contributor_confirmation, only: [:edit]
-  #ログインしていない状態で新規投稿画面へ直接アクセスしようとしても
-  #before_actionによりcontributor_confirmationメソッドが先に実行され
-  #トップページにリダイレクトする
+   # ログインしていないユーザーをログインページの画面に促す
 
 
   def index
@@ -20,7 +15,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-
     if @item.save
       # 保存に成功したら
       redirect_to root_path
@@ -37,18 +31,25 @@ class ItemsController < ApplicationController
 
 
   def edit
-  @item = Item.find(params[:id])
-  #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
+   @item = Item.find(params[:id])
+   #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
+    unless current_user == @item.user
+      redirect_to root_path
+    #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
+    end
   end
 
   def update
     @item = Item.find(params[:id])
     #editと一組で編集を行う
+    unless current_user == @item.user
+      redirect_to root_path
+    end 
+
     if @item.update(item_params)
-      render :edit
+      redirect_to item_path
     else
-    @item.update(item_params)
-      render :show
+      render :edit
     end 
   end 
 
@@ -58,9 +59,8 @@ class ItemsController < ApplicationController
   # end  
 
   private
-
-  def item_params
-    params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
-                                 :prefecture_id, :days_to_ship_charge_id, :image).merge(user_id: current_user.id)
-  end
+    def item_params
+      params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
+                                  :prefecture_id, :days_to_ship_charge_id, :image).merge(user_id: current_user.id)
+    end
 end
