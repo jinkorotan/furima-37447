@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
    # ログインしていないユーザーをログインページの画面に促す
    before_action :set_item,  only: [:show, :edit, :update,]
+   before_action :move_to_root_path, only: [:edit, :update,]
 
 
   def index
@@ -29,21 +30,12 @@ class ItemsController < ApplicationController
   def show
   end
 
-
   def edit
-   #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
-    unless current_user == @item.user
-      redirect_to root_path
     #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
-    end
   end
 
   def update
     #editと一組で編集を行う
-    unless current_user == @item.user
-      redirect_to root_path
-    end 
-
     if @item.update(item_params)
       redirect_to item_path
     else
@@ -66,4 +58,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     end
 
+    def move_to_root_path
+      unless current_user == @item.user
+        redirect_to root_path
+      end 
+    end
+    #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
 end
