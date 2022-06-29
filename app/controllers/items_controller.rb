@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
    # ログインしていないユーザーをログインページの画面に促す
+   before_action :set_item,  only: [:show, :edit, :update,]
 
 
   def index
@@ -26,12 +27,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
 
   def edit
-   @item = Item.find(params[:id])
    #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
     unless current_user == @item.user
       redirect_to root_path
@@ -40,7 +39,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     #editと一組で編集を行う
     unless current_user == @item.user
       redirect_to root_path
@@ -63,4 +61,9 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
                                   :prefecture_id, :days_to_ship_charge_id, :image).merge(user_id: current_user.id)
     end
+    
+    def set_item
+    @item = Item.find(params[:id])
+    end
+
 end
