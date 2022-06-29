@@ -26,11 +26,11 @@
 <%# 'ユーザーがログインしている 且つ 商品が出品中である' %>
 <% if user_signed_in? && @item.present?%>
   <%# '商品詳細画面にアクセスしたユーザーが出品者である' %>
-  <%# 商品編集削除ボタン %>
+  <%# 商品編集ボタン %>
   <% if current_user.id == @item.user_id %>
     <%= link_to "商品の編集",edit_item_path, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+    <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
    <% else %>  
     <%# 商品購入ボタン %>
       <%= link_to "購入画面に進む","#",class:"item-red-btn"%>

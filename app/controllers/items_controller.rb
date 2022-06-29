@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
    # ログインしていないユーザーをログインページの画面に促す
-   before_action :set_item,  only: [:show, :edit, :update,]
-   before_action :move_to_root_path, only: [:edit, :update,]
+   before_action :set_item,  only: [:show, :edit, :update, :destroy]
+   before_action :move_to_root_path, only: [:edit, :update, :destroy]
 
 
   def index
@@ -43,10 +43,13 @@ class ItemsController < ApplicationController
     end 
   end 
 
-  # def destroy
-  #     item =Item.find(params[:id])
-  #     item.destroy
-  # end  
+  def destroy
+      if @item.destroy
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end  
+  end  
 
   private
     def item_params
