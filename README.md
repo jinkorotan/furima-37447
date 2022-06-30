@@ -49,10 +49,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one : shipping
+- has_one :shipping
 
 
-## cs テーブル
+## shippings テーブル
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
