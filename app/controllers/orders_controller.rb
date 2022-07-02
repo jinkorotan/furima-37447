@@ -1,9 +1,12 @@
 class OrdersController < ApplicationController
   def index
    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
-   @order_shipping = OrderShipping.new()
+   @order_shipping = OrderShipping.new
+   @item = Item.find(params[:item_id])
+   #order/indexに使いたい情報をここで@itemに入れる
   end
   
+
   def create
    
   end
