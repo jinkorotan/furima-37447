@@ -1,11 +1,17 @@
-class OrderController < ApplicationController
+class OrdersController < ApplicationController
   def index
    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
-   @order_shipping = OrderShipping.new(order_params)
+   @order_shipping = OrderShipping.new()
   end
   
-  # def create
-  #   binding.pry
-  # end
+  def create
+   
+  end
 
+  private
+  def item_params
+    params.require(:item).permit(:post_code, :prefecture_id, :municipality, :address, :building_name, :phone_number,
+                                :order, :user_id, :item_id).merge(user_id: current_user.id)
+  end
+  
 end
