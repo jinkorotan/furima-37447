@@ -12,10 +12,15 @@ class OrdersController < ApplicationController
   # order_shippingの保存
   def create
     @order_shipping = OrderShipping.new(order_shipping_params)
-    @order_shipping.save
-    #order_shippingモデルのsaveを呼び出す
-    #フォームオブジェクトの保存
-
+    
+    if @order_shipping.valid?
+      @order_shipping.save
+      #order_shippingモデルのsaveを呼び出す
+      #フォームオブジェクトの保存
+      return redirect_to root_path
+    else
+    render 'index'
+    end
   end
 
   private
