@@ -10,11 +10,14 @@ class OrderShipping
     validates :municipality
     validates :address
     validates :phone_number
+    validates :prefecture_id
+    validates :user_id 
+    validates :item_id
   end
 
  
   
-    validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/,  message: "is invalid. Include hyphen(-)"}
+    validates :post_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/,  message: "is invalid. Include hyphen(-)"}
 
 #電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと
     validates :phone_number, format: {with: /\A0[789]0[-]?\d{4}[-]?\d{4}\z/,message: "can't be blank"}
