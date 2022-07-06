@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   
   # order_shippingの保存
   def create
+    binding.pry
     @order_shipping = OrderShipping.new(order_shipping_params)
     
     if @order_shipping.valid?
