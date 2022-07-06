@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
 
+  before_action :set_item,  only: [:index, :create]
 
   def index
    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
-   @item = Item.find(params[:item_id])
    #order/indexに使いたい情報をここで@itemに入れる
    @order_shipping = OrderShipping.new
    #２重ハッシュの空の箱ができた
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   
   # order_shippingの保存
   def create
-    binding.pry
+   
     @order_shipping = OrderShipping.new(order_shipping_params)
     
     if @order_shipping.valid?
@@ -26,6 +26,10 @@ class OrdersController < ApplicationController
 
   private
   def order_shipping_params
-    params.require(:order_shipping).permit(:post_code, :prefecture_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id]) 
+    params.require(:order_shipping).permit(:post_code, :prefecture_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id] ) 
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+    end
 end
