@@ -24,11 +24,9 @@
       </span>
     </div>
 
-<%# 商品が売り切れていない' %>
+
 <% unless  @item.order.present?%>
-    <%# 'ユーザーがログインしている 且つ 商品が出品中である' %>
     <% if user_signed_in? && @item.present?%>
-      <%# '商品詳細画面にアクセスしたユーザーが出品者である' %>
       <%# 商品編集ボタン %>
         <% if current_user.id == @item.user_id %>
           <%= link_to "商品の編集",edit_item_path, class: "item-red-btn" %>
