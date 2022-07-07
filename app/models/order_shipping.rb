@@ -1,6 +1,6 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :prefecture,:post_code,:prefecture_id,:municipality,:municipality,:address,:building_name,:phone_number,:order
+  attr_accessor :user_id, :item_id, :prefecture,:post_code,:prefecture_id,:municipality,:municipality,:address,:building_name,:phone_number,:order,:token
 
   #ここにorderとshippingのバリデーションをまとめる--------------------------------------
 

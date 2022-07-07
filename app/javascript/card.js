@@ -17,16 +17,17 @@ const pay = () => {
 
     };
     Payjp.createToken(card, (status, response) => {
-    
+   
       if (status == 200) {
         //statusはトークンの作成がうまくなされたかどうかを確認できる、HTTPステータスコードが入る
         //HTTPステータスコードが200のとき、すなわちうまく処理が完了したときだけ、トークンの値を取得する
         const token = response.id;
+        console.log(token)
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token}name='token' type="hidden"> `;
+        const tokenObj = `<input value=${token} name='order_shipping[token]' type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
        
-      }
+    
         //insertAdjacentHTMLメソッド HTMLを挿入したい要素に対して使うメソッドで、第一引数にHTMLを挿入したい位置、第二引数に挿入したいHTMLを記述
         //beforeendは挿入したい位置、tokenObjは挿入したいHTML
 
@@ -38,7 +39,8 @@ const pay = () => {
 
       document.getElementById("charge-form").submit();
        //フォームの情報をサーバーサイドに送信
-    });s
+      }  
+    });
   });
 };
 
