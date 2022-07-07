@@ -32,6 +32,9 @@ class ItemsController < ApplicationController
 
   def edit
     #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
+    unless  @item.order.present?
+      render :edit
+    end 
   end
 
   def update
