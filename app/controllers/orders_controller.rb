@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     @order_shipping = OrderShipping.new(order_shipping_params)
 
     # if @order_shipping.valid?
-      Payjp.api_key = "sk_test_66a0733f83b04496e61ff60c"     # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]     # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         
         amount: @item.price,                    # 商品の値段
