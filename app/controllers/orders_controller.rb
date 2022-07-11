@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_user!
+   # ログインしていないユーザーをログインページの画面に促す
+
   def index
    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
    #order/indexに使いたい情報をここで@itemに入れる
@@ -36,3 +39,5 @@ class OrdersController < ApplicationController
     params.require(:order_shipping).permit(:post_code, :prefecture_id, :municipality, :address, :building_name, :phone_number,:token).merge(user_id: current_user.id, item_id: params[:item_id]  ) 
   end
 end
+
+
