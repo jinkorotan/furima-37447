@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   def create
     @order_shipping = OrderShipping.new(order_shipping_params)
 
-    # if @order_shipping.valid?
+     if @order_shipping.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]     # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         
@@ -30,9 +30,9 @@ class OrdersController < ApplicationController
       #order_shippingモデルのsaveを呼び出す
       #フォームオブジェクトの保存
       return redirect_to root_path
-    # else
-    # render 'index'
-    # end
+      else
+        render 'index'
+     end
   end
 
   private
@@ -54,7 +54,6 @@ class OrdersController < ApplicationController
   #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
 
   def sold_out_root_path 
-    binding.pry
     if  @item.order.present?
       redirect_to root_path
     end 
