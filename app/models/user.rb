@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   has_many :items # itemテーブルとのアソシエーション
   has_many :orders
-  
+
   with_options presence: true do
     # ひらがな、カタカナ、漢字のみ許可する
     validates :kanji_first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters.' }

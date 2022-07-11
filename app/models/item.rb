@@ -8,7 +8,6 @@ class Item < ApplicationRecord
   belongs_to :days_to_ship_charge
   belongs_to :user # userテーブルとのアソシエーション
 
-
   belongs_to        :user
   has_one           :order
   has_one_attached  :image
