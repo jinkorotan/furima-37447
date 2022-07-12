@@ -55,11 +55,17 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが10桁以上11桁以内のみ保存可能なこと' do
+     c 'phone_numberが10桁以上11桁以内のみ保存可能なこと' do
         @order_shipping.phone_number = '090-1111-111'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
+
+      it ' tokenが空だと保存できないこと' do
+        @order_shipping.token = ''
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
+
 
       it 'userが紐付いていないと保存できないこと' do
         @order_shipping.user_id = nil

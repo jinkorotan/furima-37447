@@ -8,7 +8,7 @@ FactoryBot.define do
     name { 'カレンダー' }
     price                     { '1000' }
     description               { 'かわいいです' }
-    token {"tok_abcdefghijk00000000000000000"}
+   
     association :user
 
     after(:build) do |item|
