@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-   # ログインしていないユーザーをログインページの画面に促す
-   before_action :set_item,  only: [:show, :edit, :update, :destroy]
-   before_action :move_to_root_path, only: [:edit, :update, :destroy]
-
+  # ログインしていないユーザーをログインページの画面に促す
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_root_path, only: [:edit, :update, :destroy]
 
   def index
     @item = Item.order('created_at DESC')
@@ -31,40 +30,40 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    #updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
+    # updateと一組で編集を行う。まずは編集ページへ遷移する処理を行う
+    redirect_to root_path if @item.order.present?
   end
 
   def update
-    #editと一組で編集を行う
+    # editと一組で編集を行う
     if @item.update(item_params)
       redirect_to item_path
     else
       render :edit
-    end 
-  end 
+    end
+  end
 
   def destroy
-      if @item.destroy
-        redirect_to root_path
-      else
-        redirect_to root_path
-      end  
-  end  
+    if @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
 
   private
-    def item_params
-      params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
-                                  :prefecture_id, :days_to_ship_charge_id, :image).merge(user_id: current_user.id)
-    end
-    
-    def set_item
-    @item = Item.find(params[:id])
-    end
 
-    def move_to_root_path
-      unless current_user == @item.user
-        redirect_to root_path
-      end 
-    end
-    #現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
+  def item_params
+    params.require(:item).permit(:name, :price, :description, :category_id, :condition_id, :shipping_charge_id,
+                                 :prefecture_id, :days_to_ship_charge_id, :image).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def move_to_root_path
+    redirect_to root_path unless current_user == @item.user
+  end
+  # 現在ログインしているユーザーが商品を出品ユーザーではなかった時トップページに遷移する
 end

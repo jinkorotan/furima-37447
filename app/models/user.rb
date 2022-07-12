@@ -13,6 +13,7 @@ class User < ApplicationRecord
   end
 
   has_many :items # itemテーブルとのアソシエーション
+  has_many :orders
 
   with_options presence: true do
     # ひらがな、カタカナ、漢字のみ許可する
