@@ -19,7 +19,7 @@ class OrderShipping
   validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
 
   # 電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと
-  validates :phone_number, format: { with: /\A0[789]0-?\d{4}-?\d{4}\z/, message: "can't be blank" }
+  validates :phone_number, format: { with:/\A\d{10,11}\z/, message: "can't be blank" }
   # 正規表現が上手く表現されているときはオレンジと黄色↑になるので確認できる
 
   # ここにorderとshippingのバリデーションをまとめる--------------------------------------
