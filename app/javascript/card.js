@@ -23,7 +23,6 @@ const pay = () => {
         //statusはトークンの作成がうまくなされたかどうかを確認できる、HTTPステータスコードが入る
         //HTTPステータスコードが200のとき、すなわちうまく処理が完了したときだけ、トークンの値を取得する
         const token = response.id;
-        console.log(token)
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='order_shipping[token]' type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
