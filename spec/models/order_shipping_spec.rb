@@ -31,7 +31,7 @@ RSpec.describe OrderShipping, type: :model do
       end
 
       it 'prefecture_idを選択していないと保存できないこと' do
-        @order_shipping.prefecture_id = ''
+        @order_shipping.prefecture_id = '1'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
