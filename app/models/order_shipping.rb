@@ -11,7 +11,6 @@ class OrderShipping
     validates :municipality
     validates :address
     validates :phone_number
-    validates :prefecture_id
     validates :user_id
     validates :item_id
   end
