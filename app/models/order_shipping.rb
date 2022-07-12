@@ -7,14 +7,15 @@ class OrderShipping
 
   with_options presence: true do
     validates :post_code
-    validates :prefecture_id
     validates :municipality
     validates :address
     validates :phone_number
     validates :user_id
     validates :item_id
+    validates :token
   end
 
+  validates :prefecture_id, numericality: { other_than: 1 }
   validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
 
   # 電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと

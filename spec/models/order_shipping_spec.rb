@@ -33,7 +33,8 @@ RSpec.describe OrderShipping, type: :model do
       it 'prefecture_idを選択していないと保存できないこと' do
         @order_shipping.prefecture_id = '1'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_shipping.errors.full_messages).to include("Prefecture must be other than 1")
+
       end
       it 'municipalityが空だと保存できないこと' do
         @order_shipping.municipality = ''
@@ -55,17 +56,24 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-     c 'phone_numberが10桁以上11桁以内のみ保存可能なこと' do
-        @order_shipping.phone_number = '090-1111-111'
+      it'phone_numberが9桁以下では保存できないこと' do
+        @order_shipping.phone_number = '090-1111-1'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it ' tokenが空だと保存できないこと' do
+      it'phone_numberが12桁以上では保存できないこと' do
+        @order_shipping.phone_number = '090-1111-111111'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+
+      it 'tokenが空だと保存できないこと' do
         @order_shipping.token = ''
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
-
+      end
 
       it 'userが紐付いていないと保存できないこと' do
         @order_shipping.user_id = nil
