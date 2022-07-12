@@ -17,7 +17,6 @@ const pay = () => {
       //formDataオブジェクトからクレジットカードに関する情報を取得して変数cardに代入
 
     };
-    console.log(card)
     Payjp.createToken(card, (status, response) => {
       
       if (status == 200) {
