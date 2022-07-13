@@ -16,10 +16,10 @@ class OrderShipping
   end
 
   validates :prefecture_id, numericality: { other_than: 1 }
-  validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' },allow_blank: true
 
   # 電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと
-  validates :phone_number, format: { with:/\A\d{10,11}\z/, message: "can't be blank" }
+  validates :phone_number, format: { with:/\A\d{10,11}\z/, message: "can't be blank" },allow_blank: true
   # 正規表現が上手く表現されているときはオレンジと黄色↑になるので確認できる
 
   # ここにorderとshippingのバリデーションをまとめる--------------------------------------
